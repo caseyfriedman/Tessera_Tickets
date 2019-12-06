@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_five_dp">5dp</dimen>
+    <dimen name="small_text">10sp</dimen>
+    <dimen name="padding_extreme">20dp</dimen>
+    <dimen name="padding_very_less">4dp</dimen>
+</resources>
