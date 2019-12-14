@@ -7,49 +7,6 @@
     tools:context=".BuyPassActivity">
 
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_extreme"
-        android:stretchColumns="*"
-        app:layout_constraintTop_toBottomOf="@+id/tvDuration"
-        tools:layout_editor_absoluteX="0dp">
-
-        <TableRow
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/padding_very_less"
-            android:background="@color/colorBlack"
-            android:padding="@dimen/padding_very_less">
-
-            <TextView
-                android:id="@+id/seg_one"
-                style="@style/barGrapButtons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:background="@color/colorBlack"
-                android:text="SegmentOne"
-                android:textColor="@color/colorWhite" />
-
-            <TextView
-                android:id="@+id/seg_two"
-                style="@style/barGrapButtons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SegmentTwo" />
-
-            <TextView
-                android:id="@+id/seg_three"
-                style="@style/barGrapButtons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SegmentThree" />
-        </TableRow>
-    </TableLayout>
-
     <TextView
         android:id="@+id/tvCity"
         android:layout_width="wrap_content"
@@ -74,17 +31,150 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent=".4" />
+        app:layout_constraintGuide_end="438dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvModes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginTop="32dp"
+        android:text="Modes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/groupDurations" />
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price: "
+        app:layout_constraintBottom_toBottomOf="@+id/btnBuy"
+        app:layout_constraintEnd_toStartOf="@+id/btnBuy" />
+
+    <Button
+        android:id="@+id/btnBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Buy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Success! Pass added to all Passes!"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btnBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/groupModes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvModes">
+
+        <RadioButton
+            android:id="@+id/modes_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+
+        <RadioButton
+            android:id="@+id/modes_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+
+
+        <RadioButton
+            android:id="@+id/modes_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/groupDurations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDuration">
+
+        <RadioButton
+            android:id="@+id/dur_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+
+        <RadioButton
+            android:id="@+id/dur_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+
+
+        <RadioButton
+            android:id="@+id/dur_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/groupDiscounts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiscounts">
+
+        <RadioButton
+            android:id="@+id/disc_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+
+        <RadioButton
+            android:id="@+id/disc_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+
+
+        <RadioButton
+            android:id="@+id/disc_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="test" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvDiscounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Discounts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupModes" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,8 +18,8 @@ class PassAdapter(
     private val context: Context, private val uid: String
 ) : RecyclerView.Adapter<PassAdapter.ViewHolder>() {
 
-    private var postList = mutableListOf<Pass>()
-    private var postKeys = mutableListOf<String>()
+    private var passList = mutableListOf<Pass>()
+    private var passKeys = mutableListOf<String>()
     private var lastIndex = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,12 +30,22 @@ class PassAdapter(
     }
 
     override fun getItemCount(): Int {
-        return postList.size
+        return passList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var post = postList[position]
+        val pass = passList[position]
 
+        holder.tvCity.text = pass.city
+        holder.tvExpiry.text = pass.duration
+
+
+        if(pass.imgUrl.isEmpty()){
+            holder.ivSymbol.visibility = View.GONE
+        } else {
+            holder.ivSymbol.visibility = View.VISIBLE
+
+        }
 
 /*
         if (post.imgUrl.isEmpty()) { //have to edit build gradle for this
@@ -66,8 +76,8 @@ class PassAdapter(
 
 
     fun addPass(pass: Pass, key: String) {
-        postList.add(pass)
-        postKeys.add(key)
+        passList.add(pass)
+        passKeys.add(key)
         notifyDataSetChanged()
     }
 
@@ -77,23 +87,23 @@ class PassAdapter(
 
         //remove from the cloud
         FirebaseFirestore.getInstance().collection("posts").document(
-            postKeys[index]
+            passKeys[index]
         ).delete()
 
 
         //remove from out recycler
-        postList.removeAt(index)
-        postKeys.removeAt(index)
+        passList.removeAt(index)
+        passKeys.removeAt(index)
         notifyItemRemoved(index)
     }
 
 
     //this message is used when someone else removes a message
     fun removePostByKey(key: String) {
-        val index = postKeys.indexOf(key)
+        val index = passKeys.indexOf(key)
         if (index != -1) {
-            postList.removeAt(index)
-            postKeys.removeAt(index)
+            passList.removeAt(index)
+            passKeys.removeAt(index)
             notifyItemRemoved(index)
         }
     }
