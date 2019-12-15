@@ -2,18 +2,14 @@ package com.example.finalproject.adapter
 
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
-
-import com.example.finalproject.data.Pass
 import com.example.finalproject.R
-import com.example.finalproject.fragments.BuyPassActivity
+import com.example.finalproject.data.Pass
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.pass_row.view.*
 
@@ -60,7 +56,6 @@ class PassAdapter(
     }
 
 
-    //this function is used when we delete our own messgage
     private fun removePass(index: Int) {
 
         //remove from the cloud
@@ -76,7 +71,6 @@ class PassAdapter(
     }
 
 
-    //this message is used when someone else removes a message
     fun removePostByKey(key: String) {
         val index = passKeys.indexOf(key)
         if (index != -1) {
@@ -99,7 +93,7 @@ class PassAdapter(
 
 
     class ViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) { // holds every item that is visible on screen
+        RecyclerView.ViewHolder(itemView) {
 
         val tvCity = itemView.tvCity
         val tvExpiry = itemView.tvExpiry

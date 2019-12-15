@@ -2,17 +2,13 @@ package com.example.finalproject.adapter
 
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.MainActivity
-
-
 import com.example.finalproject.R
 import com.example.finalproject.data.City
 import com.example.finalproject.fragments.BuyPassActivity
@@ -76,7 +72,7 @@ class CitiesAdapter(
 
     private fun removeCity(index: Int) {
         /**
-         * You shouldn't be able to remove a city from the master list
+         * You shouldn't be able to remove a city from the master list of cities
          * Ideally I would make a separate list if I had more time
          */
 
@@ -109,7 +105,7 @@ class CitiesAdapter(
 
 
     class ViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) { // holds every item that is visible on screen
+        RecyclerView.ViewHolder(itemView) {
 
 
         val tvCity = itemView.tvCity

@@ -49,7 +49,7 @@ class AllPassesActivity : Fragment() {
             context as MainActivity, FirebaseAuth.getInstance().currentUser!!.uid
         )
 
-        var linLayoutManager = LinearLayoutManager(context as MainActivity)
+        val linLayoutManager = LinearLayoutManager(context as MainActivity)
         linLayoutManager.reverseLayout = true
 
         linLayoutManager.stackFromEnd = true
@@ -81,19 +81,11 @@ class AllPassesActivity : Fragment() {
             .document(FirebaseAuth.getInstance().currentUser!!.uid).collection("passes")
 
 
-        var allPostsListener = query.addSnapshotListener(
-            object : EventListener<QuerySnapshot> {
-                override fun onEvent(
-                    querySnapshot: QuerySnapshot?,
-                    e: FirebaseFirestoreException?
-                ) {
-
-                    for (doc in querySnapshot!!.documents) {
-                        val pass = doc.toObject(Pass::class.java)
-                        passAdapter.addPass(pass!!)
-                        Log.i("pass", pass.toString())
-                    }
-                }
-            })
+        query.addSnapshotListener { querySnapshot, _ ->
+            for (doc in querySnapshot!!.documents) {
+                val pass = doc.toObject(Pass::class.java)
+                passAdapter.addPass(pass!!)
+            }
+        }
     }
 }

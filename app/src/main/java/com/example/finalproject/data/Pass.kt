@@ -1,7 +1,5 @@
 package com.example.finalproject.data
 
-import java.util.*
-
 data class Pass(
     var city: String = "",
     var mode: String = "",
