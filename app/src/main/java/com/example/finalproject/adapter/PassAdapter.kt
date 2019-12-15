@@ -37,7 +37,7 @@ class PassAdapter(
 
         holder.tvCity.text = pass.city
         holder.tvExpiry.text = pass.duration
-
+        holder.tvMode.text = pass.mode
 
 
         if (pass.imgUrl.isEmpty()) {
@@ -100,6 +100,6 @@ class PassAdapter(
         val btnRenew = itemView.btnRenew
         val ivSymbol = itemView.ivSymbol
         val ivBarcode = itemView.ivBarcode
-
+        val tvMode = itemView.tvMode
     }
 }

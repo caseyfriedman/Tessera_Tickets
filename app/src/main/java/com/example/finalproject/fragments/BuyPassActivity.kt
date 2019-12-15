@@ -44,10 +44,6 @@ class BuyPassActivity : Fragment() {
 
 
 
-
-
-
-
         return rootView
     }
 
@@ -55,21 +51,13 @@ class BuyPassActivity : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadOptionsIntoObject()
-
-
-
-
         btnBuy.setOnClickListener {
 
 
             if (groupModes.isSelected and groupDiscounts.isSelected and groupDurations.isSelected) {
 
-            Log.i("tester","first branch selected")
-
-
 
             } else {
-                Log.i("tester", "button clicked, else statement")
                 val passCreated = onBuy()
                 storePassInDatabase(passCreated)
 
@@ -79,14 +67,14 @@ class BuyPassActivity : Fragment() {
 
     private fun onBuy(): Pass {
 
-        Log.i("tester","onBuy called")
 
         return Pass(
             city,
             view?.findViewById<RadioButton>(groupModes.checkedRadioButtonId)?.text.toString(),
             view?.findViewById<RadioButton>(groupDurations.checkedRadioButtonId)?.text.toString(),
             view?.findViewById<RadioButton>(groupDiscounts.checkedRadioButtonId)?.text.toString(),
-            cityUrl)
+            cityUrl
+        )
 
     }
 
@@ -110,6 +98,7 @@ class BuyPassActivity : Fragment() {
 
     private fun setRadioButtons(cityObject: City) {
 
+
         groupModes.modes_one.text = cityObject.modes[0]
         groupModes.modes_two.text = cityObject.modes[1]
         groupModes.modes_three.text = cityObject.modes[2]
@@ -132,7 +121,6 @@ class BuyPassActivity : Fragment() {
 
         messageRef.add(pass).addOnSuccessListener {
             tvSuccess.visibility = View.VISIBLE
-
         }.addOnFailureListener {
             Toast.makeText(context as MainActivity, "Error: ${it.message}", Toast.LENGTH_LONG)
                 .show()

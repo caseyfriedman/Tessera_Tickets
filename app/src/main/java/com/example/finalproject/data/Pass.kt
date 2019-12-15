@@ -9,7 +9,3 @@ data class Pass(
 
 )
 
-/**
-cities[0] = zones
-cities[1] =
- */
