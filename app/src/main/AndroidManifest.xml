@@ -11,10 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BuyPassActivity"></activity>
+        <activity
+            android:name=".fragments.SearchFragment"
+            android:label="@string/title_activity_search_fragment"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".fragments.BuyPassActivity" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".AllPassesActivity"
+            android:name=".fragments.AllPassesActivity"
             android:label="@string/title_activity_all_passes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoginActivity">

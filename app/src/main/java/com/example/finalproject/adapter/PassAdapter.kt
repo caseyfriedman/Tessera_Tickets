@@ -2,20 +2,23 @@ package com.example.finalproject.adapter
 
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 
 import com.example.finalproject.data.Pass
 import com.example.finalproject.R
+import com.example.finalproject.fragments.BuyPassActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.pass_row.view.*
 
 class PassAdapter(
-    private val context: Context, private val uid: String
+    private val context: Context,uid: String
 ) : RecyclerView.Adapter<PassAdapter.ViewHolder>() {
 
     private var passList = mutableListOf<Pass>()
@@ -40,44 +43,19 @@ class PassAdapter(
         holder.tvExpiry.text = pass.duration
 
 
-        if(pass.imgUrl.isEmpty()){
+
+        if (pass.imgUrl.isEmpty()) {
             holder.ivSymbol.visibility = View.GONE
         } else {
             holder.ivSymbol.visibility = View.VISIBLE
-
+            Glide.with(context).load(pass.imgUrl).into(holder.ivSymbol)
         }
 
-/*
-        if (post.imgUrl.isEmpty()) { //have to edit build gradle for this
-            holder.ivPhoto.visibility = View.GONE
-        } else {
-            holder.ivPhoto.visibility = View.VISIBLE
-            // Glide.with(context).load(post.imgUrl).into(holder.ivPhoto)
-        }
-
-
-        //if this is my post
-        if (post.uid == uid) {
-            holder.btnDelete.visibility = View.VISIBLE
-            holder.btnDelete.setOnClickListener {
-                removePass(holder.adapterPosition)
-            }
-        } else {
-            holder.btnDelete.visibility = View.GONE
-        }
-
-
-
-        setAnimation(holder.itemView, position)
-
-
- */
     }
 
 
-    fun addPass(pass: Pass, key: String) {
+    fun addPass(pass: Pass) {
         passList.add(pass)
-        passKeys.add(key)
         notifyDataSetChanged()
     }
 

@@ -47,6 +47,7 @@
         android:id="@+id/ivBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toTopOf="parent"

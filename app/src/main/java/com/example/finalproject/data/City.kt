@@ -5,7 +5,9 @@ data class City(
     var modes: ArrayList<String> = arrayListOf(),
     var discounts: ArrayList<String> = arrayListOf(),
     var durations: ArrayList<String> = arrayListOf(),
-    var imgUrl: String
+    var imgUrl: String = "",
+    var name: String = ""
+
 )
 
 

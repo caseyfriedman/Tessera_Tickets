@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Tessera</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_all_passes">AllPassesActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_search_fragment">SearchFragment</string>
+    <string name="metroNotice">Metro Line M3 does not operate between Kőbánya-Kispest and Nagyvárad tér station.</string>
+    <string name="welcome">Welcome to Budapest</string>
+    <string name="notices">Notices</string>
 </resources>

@@ -1,101 +1,105 @@
 package com.example.finalproject
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.finalproject.adapter.PassAdapter
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
+import androidx.fragment.app.Fragment
+import com.example.finalproject.fragments.AllPassesActivity
+import com.example.finalproject.fragments.BuyPassActivity
+import com.example.finalproject.fragments.MainFragment
+import com.example.finalproject.fragments.SearchFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
+    var startedBefore = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnSwitch.setOnClickListener {
-            startActivity(Intent(this@MainActivity,AllPassesActivity::class.java))
+
+        if (savedInstanceState == null) {
+            var startedBefore = false
         }
 
-        btnPass.setOnClickListener {
-            startActivity(Intent(this@MainActivity,BuyPassActivity::class.java))
-        }
-
-        //setSupportActionBar(toolbar)
-
-        /*Z
-        fab.setOnClickListener {
-            //startActivity(Intent(this@ForumActivity, CreatePostActivity::class.java))
-        }
-
-        passAdapter = PassAdapter(
-            this, FirebaseAuth.getInstance().currentUser!!.uid
-        )
-
-        var linLayoutManager = LinearLayoutManager(this)
-        linLayoutManager.reverseLayout = true
-
-        linLayoutManager.stackFromEnd = true
 
 
-        recyclerPosts.layoutManager = linLayoutManager
+        nav_view.setOnNavigationItemSelectedListener(myOnNavigationItemSelectedListener)
 
-        recyclerPosts.adapter = passAdapter
+        showFragmentByTag(AllPassesActivity.TAG, false)
 
-        queryPosts()
 
-         */
     }
 
-    private fun queryPosts() {
-
-        /*
-        val db = FirebaseFirestore.getInstance()
-        val query = db.collection("posts")
-
-
-        var allPostsListener = query.addSnapshotListener(
-            object : EventListener<QuerySnapshot> {
-                override fun onEvent(
-                    querySnapshot: QuerySnapshot?,
-                    e: FirebaseFirestoreException?
-                ) {
-
-                    if (e != null) {
-                        Toast.makeText(
-                            this@ForumActivity,
-                            "listen error: ${e.message}",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        return
-                    }
-
-                    for (dc in querySnapshot!!.documentChanges) {
-                        when (dc.type) {
-                            DocumentChange.Type.ADDED -> {
-                                val post = dc.document.toObject(Post::class.java)
-                                passAdapter.addPost(post, dc.document.id)
-                            }
-                            DocumentChange.Type.MODIFIED -> {
-                                Toast.makeText(
-                                    this@ForumActivity,
-                                    "update: ${dc.document.id}",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                            DocumentChange.Type.REMOVED -> {
-                                passAdapter.removePostByKey(dc.document.id)
-                            }
-                        }
-                    }
-
-
+    public fun showFragmentByTag(
+        tag: String,
+        toBackStack: Boolean
+    ) {
+        var fragment: Fragment? = supportFragmentManager.findFragmentByTag(tag)
+        if (fragment == null) {
+            when (tag) {
+                AllPassesActivity.TAG -> {
+                    fragment =
+                        AllPassesActivity()
                 }
-            })
-    }*/
+                BuyPassActivity.TAG -> {
+                    fragment =
+                        BuyPassActivity()
+                }
+                MainFragment.TAG -> {
+                    fragment = MainFragment()
+                }
+                SearchFragment.TAG -> {
+                    fragment = SearchFragment()
+                }
+            }
+        }
+
+        if (fragment != null) {
+            val ft = supportFragmentManager
+                .beginTransaction()
+            ft.replace(R.id.fragmentContainer, fragment!!, tag)
+            if (toBackStack) {
+                ft.addToBackStack(null)
+            }
+            ft.commit()
+        }
+    }
+
+    private val myOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
+
+            if (!startedBefore) {
+                showFragmentByTag(MainFragment.TAG, true) // need the main fragment
+                startedBefore = true // I only want this if statement executed once
+                return@OnNavigationItemSelectedListener true
+
+            }
+
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    showFragmentByTag(MainFragment.TAG, true)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_search -> {
+                    showFragmentByTag(SearchFragment.TAG, true)
+                    return@OnNavigationItemSelectedListener true
+                }
+
+                R.id.navigation_all_passes -> {
+                    showFragmentByTag(AllPassesActivity.TAG, true)
+                    return@OnNavigationItemSelectedListener true
+                }
+
+            }
+            false
+        }
+
+
 }
-}
+
+
