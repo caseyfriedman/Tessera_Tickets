@@ -11,11 +11,7 @@ import com.example.finalproject.R
 import com.example.finalproject.adapter.CitiesAdapter
 import com.example.finalproject.data.City
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
-
 import kotlinx.android.synthetic.main.content_search_fragment.*
 
 class SearchFragment : Fragment() {
@@ -41,22 +37,27 @@ class SearchFragment : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
+        val intent: String = if (arguments?.getString("INTENT").isNullOrEmpty()) {
+            "INFO" //this means we are coming from search page directly
+        } else { //we are coming from the buy page or something else
+            arguments?.getString("INTENT").toString() //it's never gonna be info
 
-
+        }
 
         cityAdapter = CitiesAdapter(
-            context as MainActivity, FirebaseAuth.getInstance().currentUser!!.uid
+            context as MainActivity, FirebaseAuth.getInstance().currentUser!!.uid, intent
         )
+
 
         var linLayoutManager = LinearLayoutManager(context as MainActivity)
         linLayoutManager.reverseLayout = true
 
         linLayoutManager.stackFromEnd = true
+
 
 
 
@@ -75,19 +76,12 @@ class SearchFragment : Fragment() {
         val query = db.collection("cities")
 
 
-        var allPostsListener = query.addSnapshotListener(
-            object : EventListener<QuerySnapshot> {
-                override fun onEvent(
-                    querySnapshot: QuerySnapshot?,
-                    e: FirebaseFirestoreException?
-                ) {
-
-                    for (doc in querySnapshot!!.documents) {
-                        val city = doc.toObject(City::class.java)
-                        cityAdapter.addCity(city!!)
-                    }
-                }
-            })
+        var allPostsListener = query.addSnapshotListener { querySnapshot, _ ->
+            for (doc in querySnapshot!!.documents) {
+                val city = doc.toObject(City::class.java)
+                cityAdapter.addCity(city!!)
+            }
+        }
     }
 }
 

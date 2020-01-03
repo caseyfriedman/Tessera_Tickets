@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.MainActivity
 import com.example.finalproject.R
 import com.example.finalproject.data.City
+import com.example.finalproject.fragments.AllPassesActivity
 import com.example.finalproject.fragments.BuyPassActivity
+import com.example.finalproject.fragments.InfoFragment
 import com.example.finalproject.fragments.SearchFragment
 import kotlinx.android.synthetic.main.city_row.view.*
 
 class CitiesAdapter(
     private val context: Context,
-    uid: String
+    uid: String, private var intent: String
 ) : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     private var citiesList = mutableListOf<City>()
     private var lastIndex = -1
-
 
     /**
      * There are no add or delete methods to make things simpler
@@ -32,31 +33,19 @@ class CitiesAdapter(
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.city_row, parent, false
         )
+
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val city = citiesList[position]
-
-
         holder.tvCity.text = city.name
 
 
 
-        holder.itemView.setOnClickListener {
 
-            var bundle = Bundle()
-            bundle.putString("CITY", city.name)
+        setIntent(holder, intent)
 
-            val buyFrag = BuyPassActivity()
-            buyFrag.arguments = bundle
-
-
-
-            var transaction = (context as MainActivity).supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentContainer, buyFrag).addToBackStack(SearchFragment.TAG).commit()
-
-        }
     }
 
     override fun getItemCount(): Int {
@@ -112,5 +101,54 @@ class CitiesAdapter(
 
     }
 
+    private fun setIntent(holder: ViewHolder, intent: String) {
+        when (intent) {
+            "BUY" -> onClickGoToBuy(holder)
+            "INFO" -> onClickGoToInfo(holder)
+        }
 
+    }
+
+
+    private fun onClickGoToBuy(holder: ViewHolder) { //need to add a param for the calling activity
+
+        holder.itemView.setOnClickListener {
+
+
+            goToBuy(holder.tvCity.text.toString())
+
+
+        }
+    }
+
+
+    private fun onClickGoToInfo(holder: ViewHolder) {
+
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("CITY", holder.tvCity.text.toString())
+
+            val infoFrag = InfoFragment()
+            infoFrag.arguments = bundle
+
+
+            val transaction = (context as MainActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainer, infoFrag).addToBackStack(SearchFragment.TAG)
+                .commit()
+        }
+    }
+
+    fun goToBuy(name: String) {
+        val bundle = Bundle()
+        bundle.putString("CITY", name)
+
+        val buyPassActivity = BuyPassActivity()
+        buyPassActivity.arguments = bundle
+
+
+        val transaction = (context as MainActivity).supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragmentContainer, buyPassActivity)
+            .addToBackStack(AllPassesActivity.TAG).commit() //need to change TAG
+
+    }
 }

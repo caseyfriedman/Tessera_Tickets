@@ -28,7 +28,6 @@
         android:id="@+id/tvCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="City"
         android:textSize="30sp"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
@@ -39,7 +38,7 @@
         android:id="@+id/tvExpiry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Expires in 5 days"
+        android:text="@string/expiration"
         android:textSize="15sp"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent" />
@@ -49,7 +48,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
-        card_view:layout_constraintBottom_toTopOf="@+id/tvMode"
+        card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintDimensionRatio="1"
         card_view:layout_constraintEnd_toStartOf="@+id/tvCity"
         card_view:layout_constraintStart_toStartOf="parent"
@@ -60,7 +59,7 @@
         android:id="@+id/btnRenew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Renew"
+        android:text="@string/renew"
         android:visibility="invisible"
         card_view:layout_constraintBottom_toBottomOf="parent"
         card_view:layout_constraintEnd_toStartOf="@+id/tvExpiry" />
@@ -69,10 +68,9 @@
         android:id="@+id/tvMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textSize="15sp"
         card_view:layout_constraintBottom_toBottomOf="parent"
-        card_view:layout_constraintStart_toStartOf="parent" />
+        card_view:layout_constraintStart_toStartOf="@+id/tvCity" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

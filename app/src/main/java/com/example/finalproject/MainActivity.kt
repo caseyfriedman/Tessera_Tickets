@@ -13,28 +13,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
 
-    var startedBefore = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        if (savedInstanceState == null) {
-            var startedBefore = false
-        }
 
 
 
         nav_view.setOnNavigationItemSelectedListener(myOnNavigationItemSelectedListener)
 
-        showFragmentByTag(AllPassesActivity.TAG, false)
+        showFragmentByTag(MainFragment.TAG, false)
+        nav_view.menu.getItem(1).isChecked = true
 
 
     }
 
-    public fun showFragmentByTag(
+    fun showFragmentByTag(
         tag: String,
         toBackStack: Boolean
     ) {
@@ -72,13 +68,6 @@ class MainActivity : AppCompatActivity() {
     private val myOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
-
-            if (!startedBefore) {
-                showFragmentByTag(MainFragment.TAG, true) // need the main fragment
-                startedBefore = true // I only want this if statement executed once
-                return@OnNavigationItemSelectedListener true
-
-            }
 
             when (item.itemId) {
                 R.id.navigation_home -> {

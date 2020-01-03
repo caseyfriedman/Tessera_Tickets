@@ -1,7 +1,6 @@
 package com.example.finalproject.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,7 @@ import com.example.finalproject.R
 import com.example.finalproject.adapter.PassAdapter
 import com.example.finalproject.data.Pass
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
-
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_all_passes.*
 
 class AllPassesActivity : Fragment() {
@@ -64,10 +62,19 @@ class AllPassesActivity : Fragment() {
 
 
         fab.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(
+                "INTENT",
+                "BUY"
+            ) //means I want the search option to take you to straight to city info
+
+            val searchFragment = SearchFragment()
+            searchFragment.arguments = bundle
+
             (activity as MainActivity).supportFragmentManager.beginTransaction() //open a new fragment, I wonder if there's a better way tho...
                 .replace(
                     R.id.fragmentContainer,
-                    SearchFragment()
+                    searchFragment
                 ).addToBackStack(TAG).commit()
         }
         queryPosts()

@@ -12,6 +12,7 @@ import com.example.finalproject.MainActivity
 import com.example.finalproject.R
 import com.example.finalproject.data.City
 import com.example.finalproject.data.Pass
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_buy_pass.*
 import com.google.firebase.firestore.*
@@ -54,13 +55,14 @@ class BuyPassActivity : Fragment() {
         btnBuy.setOnClickListener {
 
 
-            if (groupModes.isSelected and groupDiscounts.isSelected and groupDurations.isSelected) {
+            if (allBoxesChecked()) {
 
-
-            } else {
                 val passCreated = onBuy()
                 storePassInDatabase(passCreated)
+                //Wanted to require you to check a box, but it didn't end up working :/
 
+            } else {
+                Snackbar.make(view, "All rows must be selected", Snackbar.LENGTH_LONG).show()
             }
         }
     }
@@ -96,6 +98,25 @@ class BuyPassActivity : Fragment() {
     }
 
 
+    /**
+     * Look up "how to return an object from an on success listener
+     */
+    fun getCity(city: String): City {
+
+        var cityObject = City()
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("cities").document(city).get().addOnSuccessListener { document ->
+            if (document != null) {
+                cityObject = document.toObject(City::class.java)!!
+            } else {
+                Log.w("MY_TAG", "NULL CITY")
+            }
+
+        }
+        return cityObject
+    }
+
     private fun setRadioButtons(cityObject: City) {
 
 
@@ -128,6 +149,22 @@ class BuyPassActivity : Fragment() {
 
     }
 
+
+    private fun allBoxesChecked(): Boolean {
+
+        when {
+            groupModes.checkedRadioButtonId == -1 -> {
+                return false
+            }
+            groupDurations.checkedRadioButtonId == -1 -> {
+                return false
+            }
+            groupDiscounts.checkedRadioButtonId == -1 -> {
+                return false
+            }
+        }
+        return true
+    }
 
 }
 

@@ -25,6 +25,8 @@ class PassAdapter(
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.pass_row, parent, false
         )
+
+
         return ViewHolder(view)
     }
 

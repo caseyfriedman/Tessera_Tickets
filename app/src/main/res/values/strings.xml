@@ -9,4 +9,21 @@
     <string name="metroNotice">Metro Line M3 does not operate between Kőbánya-Kispest and Nagyvárad tér station.</string>
     <string name="welcome">Welcome to Budapest</string>
     <string name="notices">Notices</string>
+    <string name="renew">Renew</string>
+    <string name="expiration">Expires in 5 days</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="_123456">123456</string>
+    <string name="email">email</string>
+    <string name="demo">demo@ait.hu</string>
+    <string name="Discounts">Discounts</string>
+    <string name="success">Success! Pass added to all Passes!</string>
+    <string name="buy">Buy</string>
+    <string name="price">Price: 300 Ft</string>
+    <string name="modes">Modes</string>
+    <string name="duration">Duration</string>
+    <string name="passes">Passes</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
 </resources>

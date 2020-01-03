@@ -11,7 +11,6 @@
         android:id="@+id/tvCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="City"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +20,7 @@
         android:id="@+id/tvDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Duration"
+        android:text="@string/duration"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -38,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Modes"
+        android:text="@string/modes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupDurations" />
@@ -47,7 +46,7 @@
         android:id="@+id/tvCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price: "
+        android:text="@string/price"
         app:layout_constraintBottom_toBottomOf="@+id/btnBuy"
         app:layout_constraintEnd_toStartOf="@+id/btnBuy" />
 
@@ -58,7 +57,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Buy"
+        android:text="@string/buy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -66,7 +65,7 @@
         android:id="@+id/tvSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Success! Pass added to all Passes!"
+        android:text="@string/success"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btnBuy"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,23 +84,20 @@
             android:id="@+id/modes_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="test" />
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/modes_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="test" />
+            android:layout_weight="1" />
 
 
         <RadioButton
             android:id="@+id/modes_three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="tes" />
+            android:layout_weight="1" />
     </RadioGroup>
 
     <RadioGroup
@@ -166,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Discounts"
+        android:text="@string/Discounts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupModes" />
